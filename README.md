@@ -1,17 +1,12 @@
 # SNP-Landscape-in-Head-and-Neck-Squamous-Cell-Cancer
 Complete workflow for analyzing and visualizing Single Nucleotide Polymorphisms (SNPs) from Whole Exome Sequencing (WES) data of Head and Neck Squamous Cell Carcinoma (HNSCC), based on open-source data (SRA ID: SRR32633603). Using R and Bioconductor packages like VariantAnnotation and Genomic
+
 # Load libraries
-# --------------------------
 library(ggplot2)
 library(dplyr)
 library(viridis)
 library(tidyr)  # for data reshaping
 
-# --------------------------
-# Simulate example SNP dataset
-# Replace with your real data!
-# --------------------------
-set.seed(123)
 n_snps <- 1000
 n_samples <- 50  # number of samples for genotype matrix simulation
 
@@ -33,10 +28,7 @@ snp_df <- data.frame(
     )
   )
 
-# --------------------------
 # Simulate genotype matrix (0,1,2 for genotypes) for PCA
-# SNPs in rows, samples in columns
-# --------------------------
 genotypes <- matrix(
   sample(0:2, n_snps * n_samples, replace = TRUE, prob = c(0.7, 0.2, 0.1)),
   nrow = n_snps, ncol = n_samples
@@ -44,9 +36,9 @@ genotypes <- matrix(
 colnames(genotypes) <- paste0("Sample", 1:n_samples)
 rownames(genotypes) <- paste0("SNP", 1:n_snps)
 
-# --------------------------
+
 # Perform PCA on genotype matrix
-# --------------------------
+
 pca_res <- prcomp(t(genotypes), scale. = TRUE)  # transpose: samples are rows
 
 # Create PCA dataframe for plotting
@@ -56,18 +48,14 @@ pca_df <- data.frame(
   PC2 = pca_res$x[,2]
 )
 
-# --------------------------
+
 # Plot PCA
-# --------------------------
+
 ggplot(pca_df, aes(x = PC1, y = PC2)) +
   geom_point(color = "darkblue", size = 3, alpha = 0.8) +
   theme_minimal() +
   labs(title = "PCA of Simulated Genotype Data",
        x = "PC1", y = "PC2")
-
-# --------------------------
-# Previous plots
-# --------------------------
 
 # 1. SNP Density Heatmap
 bin_counts <- snp_df %>%
