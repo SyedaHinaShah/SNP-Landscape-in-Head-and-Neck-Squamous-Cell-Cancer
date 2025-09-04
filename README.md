@@ -132,6 +132,7 @@ ggplot(snp_df %>% count(CHR), aes(x = CHR, y = n)) +
   labs(title = "SNP Counts per Chromosome",
        x = "Chromosome", y = "SNP Count")
 
+
 <img width="2100" height="1200" alt="Variant_counts_per_chromosome" src="https://github.com/user-attachments/assets/b8a0da9a-0dd7-486a-8fe3-991722895a97" />
 <img width="704" height="354" alt="SNPs per chr" src="https://github.com/user-attachments/assets/e7b6ca5a-f8c1-4bf4-bec3-63ee7ed41dfa" />
 <img width="704" height="354" alt="SNP_box plot" src="https://github.com/user-attachments/assets/1b735308-b2b6-443e-a92f-ac240b806c3e" />
